@@ -34,6 +34,7 @@
 
 @implementation EGOGradientView
 
+@dynamic layer;
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
