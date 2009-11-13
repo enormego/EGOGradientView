@@ -1,4 +1,5 @@
 h1. EGOGradientView
+
 Created by enormego
 
 EGOGradientView is a UIView that's layer backed by CAGradientLayer.  This let's you have UIView's with gradient backgrounds, without much hassle.

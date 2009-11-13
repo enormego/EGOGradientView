@@ -52,8 +52,7 @@
 			[normalizedColors addObject:color];
 		}
 	}
-	
-	NSLog(@"Setting: %@ | %@ | %@ | %@", normalizedColors, newColors, self, self.layer);
+
 	self.layer.colors = normalizedColors;
 	[normalizedColors release];
 }
