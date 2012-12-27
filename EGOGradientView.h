@@ -39,7 +39,7 @@
 
 // CAGradientLayer requires you to pass only CGColorRefs.
 // However EGOGradientView will covert the UIColors to CGColorRefs for you, and will pass back UIColors
-@property(copy) NSArray *colors;
+@property(copy) NSArray* colors;
 
 /* An optional array of NSNumber objects defining the location of each
  * gradient stop as a value in the range [0,1]. The values must be
@@ -48,7 +48,7 @@
  * the colors are mapped to the output colorspace before being
  * interpolated. Defaults to nil. Animatable. */
 
-@property(copy) NSArray *locations;
+@property(copy) NSArray* locations;
 
 /* The start and end points of the gradient when drawn into the layer's
  * coordinate space. The start point corresponds to the first gradient

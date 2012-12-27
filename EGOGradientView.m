@@ -27,21 +27,10 @@
 #import "EGOGradientView.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface EGOGradientView (Private)
-@property(nonatomic,readonly,retain) CAGradientLayer* layer;
-@end
-
+#define _layer ((CAGradientLayer*)self.layer)
 
 @implementation EGOGradientView
-
-@dynamic layer;
-
-- (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        // Initialization code
-    }
-    return self;
-}
+@dynamic colors, locations, startPoint, endPoint, type;
 
 - (void)setColors:(NSArray *)newColors {
 	NSMutableArray* normalizedColors = [[NSMutableArray alloc] initWithCapacity:newColors.count];
@@ -54,62 +43,63 @@
 		}
 	}
 
-	self.layer.colors = normalizedColors;
-	[normalizedColors release];
+	_layer.colors = normalizedColors;
+	
+	#if !__has_feature(objc_arc)
+		[normalizedColors release];
+	#endif
 }
 
 - (NSArray*)colors {
-	NSMutableArray* uiColors = [[NSMutableArray alloc] initWithCapacity:self.layer.colors.count];
+	NSMutableArray* uiColors = [[NSMutableArray alloc] initWithCapacity:_layer.colors.count];
 	
-	for(id cgColor in self.layer.colors) {
+	for(id cgColor in _layer.colors) {
 		[uiColors addObject:[UIColor colorWithCGColor:(CGColorRef)cgColor]];
 	}
 	
 	NSArray* colors = [NSArray arrayWithArray:uiColors];
-	[uiColors release];
+
+	#if !__has_feature(objc_arc)
+		[uiColors release];
+	#endif
 	
 	return colors;
 }
 
 - (void)setLocations:(NSArray *)locations {
-	self.layer.locations = locations;
+	_layer.locations = locations;
 }
 
 - (NSArray*)locations {
-	return self.layer.locations;
+	return _layer.locations;
 }
 
 - (void)setStartPoint:(CGPoint)point {
-	self.layer.startPoint = point;
+	_layer.startPoint = point;
 }
 
 - (CGPoint)startPoint {
-	return self.layer.startPoint;
+	return _layer.startPoint;
 }
 
 - (void)setEndPoint:(CGPoint)point {
-	self.layer.endPoint = point;
+	_layer.endPoint = point;
 }
 
 - (CGPoint)endPoint {
-	return self.layer.endPoint;
+	return _layer.endPoint;
 }
 
 - (void)setType:(NSString *)type {
-	self.layer.type = type;
+	_layer.type = type;
 }
 
 - (NSString*)type {
-	return self.layer.type;
+	return _layer.type;
 }
 
 + (Class)layerClass {
 	return [CAGradientLayer class];
 }
-
-- (void)dealloc {
-    [super dealloc];
-}
-
 
 @end
