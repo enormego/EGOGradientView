@@ -25,77 +25,81 @@
 //
 
 #import "EGOGradientView.h"
-#import <QuartzCore/QuartzCore.h>
 
-#define _layer ((CAGradientLayer*)self.layer)
+EGOGradientViewType EGOGradientViewTypeAxial = nil;
 
 @implementation EGOGradientView
-@dynamic colors, locations, startPoint, endPoint, type;
 
-- (void)setColors:(NSArray *)newColors {
-	NSMutableArray* normalizedColors = [[NSMutableArray alloc] initWithCapacity:newColors.count];
-	
-	for(id color in newColors) {
-		if([color isKindOfClass:[UIColor class]]) {
-			[normalizedColors addObject:(id)[(UIColor*)color CGColor]];
-		} else {
-			[normalizedColors addObject:color];
-		}
-	}
-
-	_layer.colors = normalizedColors;
-	
-	#if !__has_feature(objc_arc)
-		[normalizedColors release];
-	#endif
++ (void)initialize {
+	EGOGradientViewTypeAxial = kCAGradientLayerAxial;
 }
 
-- (NSArray*)colors {
-	NSMutableArray* uiColors = [[NSMutableArray alloc] initWithCapacity:_layer.colors.count];
-	
-	for(id cgColor in _layer.colors) {
-		[uiColors addObject:[UIColor colorWithCGColor:(CGColorRef)cgColor]];
-	}
-	
-	NSArray* colors = [NSArray arrayWithArray:uiColors];
+#pragma mark - Colors
 
-	#if !__has_feature(objc_arc)
-		[uiColors release];
-	#endif
+- (void)setColors:(NSArray<UIColor*>*)colors {
+	NSMutableArray* normalizedColors = [[NSMutableArray alloc] initWithCapacity:colors.count];
 	
-	return colors;
+	for(UIColor* color in colors) {
+		[normalizedColors addObject:(id)color.CGColor];
+	}
+
+	self.layer.colors = normalizedColors;
 }
 
-- (void)setLocations:(NSArray *)locations {
-	_layer.locations = locations;
+- (NSArray<UIColor*>*)colors {
+	NSArray* cgColors = self.layer.colors;
+	NSMutableArray* uiColors = [[NSMutableArray alloc] initWithCapacity:cgColors.count];
+	
+	for(id cgColor in cgColors) {
+		UIColor* uiColor = [[UIColor alloc] initWithCGColor:(CGColorRef)cgColor];
+		[uiColors addObject:uiColor];
+	}
+	
+	return [NSArray arrayWithArray:uiColors];
+}
+
+#pragma mark - Locations
+
+- (void)setLocations:(NSArray*)locations {
+	self.layer.locations = locations;
 }
 
 - (NSArray*)locations {
-	return _layer.locations;
+	return self.layer.locations;
 }
 
+#pragma mark - Points
+
 - (void)setStartPoint:(CGPoint)point {
-	_layer.startPoint = point;
+	self.layer.startPoint = point;
 }
 
 - (CGPoint)startPoint {
-	return _layer.startPoint;
+	return self.layer.startPoint;
 }
 
 - (void)setEndPoint:(CGPoint)point {
-	_layer.endPoint = point;
+	self.layer.endPoint = point;
 }
 
 - (CGPoint)endPoint {
-	return _layer.endPoint;
+	return self.layer.endPoint;
 }
 
-- (void)setType:(NSString *)type {
-	_layer.type = type;
+#pragma mark - Type
+
+- (void)setType:(EGOGradientViewType)type {
+	self.layer.type = type;
 }
 
-- (NSString*)type {
-	return _layer.type;
+- (EGOGradientViewType)type {
+	return self.layer.type;
+}
+
+#pragma mark - Layer
+
+- (CAGradientLayer*)layer {
+	return (CAGradientLayer*)[super layer];
 }
 
 + (Class)layerClass {

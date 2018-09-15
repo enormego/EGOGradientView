@@ -25,12 +25,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 //! Project version number for EGOGradientView.
 FOUNDATION_EXPORT double EGOGradientViewVersionNumber;
 
 //! Project version string for EGOGradientView.
 FOUNDATION_EXPORT const unsigned char EGOGradientViewVersionString[];
+
+NS_SWIFT_NAME(GradientViewType)
+typedef NSString* EGOGradientViewType NS_EXTENSIBLE_STRING_ENUM;
+
+FOUNDATION_EXPORT EGOGradientViewType EGOGradientViewTypeAxial;
 
 /*
  * EGOGradientView works as a straight pass through to
@@ -39,13 +45,14 @@ FOUNDATION_EXPORT const unsigned char EGOGradientViewVersionString[];
  * and will always return an NSArray of UIColor objects.
  */
 
-@interface EGOGradientView : UIView {
+NS_SWIFT_NAME(GradientView)
+@interface EGOGradientView : UIView
 
-}
+@property(nonatomic,strong,readonly) CAGradientLayer* layer;
 
-// CAGradientLayer requires you to pass only CGColorRefs.
-// However EGOGradientView will covert the UIColors to CGColorRefs for you, and will pass back UIColors
-@property(copy) NSArray* colors;
+/* The array of UIColor objects defining the color of each gradient
+ * stop. Defaults to nil. Animatable. */
+@property(nonatomic,copy,nullable) NSArray<UIColor*>* colors;
 
 /* An optional array of NSNumber objects defining the location of each
  * gradient stop as a value in the range [0,1]. The values must be
@@ -53,8 +60,7 @@ FOUNDATION_EXPORT const unsigned char EGOGradientViewVersionString[];
  * assumed to spread uniformly across the [0,1] range. When rendered,
  * the colors are mapped to the output colorspace before being
  * interpolated. Defaults to nil. Animatable. */
-
-@property(copy) NSArray* locations;
+@property(nonatomic,copy,nullable) NSArray<NSNumber*>* locations;
 
 /* The start and end points of the gradient when drawn into the layer's
  * coordinate space. The start point corresponds to the first gradient
@@ -63,12 +69,9 @@ FOUNDATION_EXPORT const unsigned char EGOGradientViewVersionString[];
  * layer's bounds rectangle when drawn. (i.e. [0,0] is the bottom-left
  * corner of the layer, [1,1] is the top-right corner.) The default values
  * are [.5,0] and [.5,1] respectively. Both are animatable. */
+@property(nonatomic) CGPoint startPoint;
+@property(nonatomic) CGPoint endPoint;
 
-@property CGPoint startPoint, endPoint;
-
-/* The kind of gradient that will be drawn. Currently the only allowed
- * value is `kCAGradientLayerAxial' (the default value.). */
-
-@property(copy) NSString *type;
-
+/* The kind of gradient that will be drawn. */
+@property(nonatomic,copy,nonnull) EGOGradientViewType type;
 @end
