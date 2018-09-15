@@ -3,7 +3,7 @@
 //  EGOGradientView
 //
 //  Created by Shaun Harrison on 11/13/09.
-//  Copyright (c) 2009 enormego
+//  Copyright (c) 2009-2018 enormego
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,12 @@
 //
 
 #import <UIKit/UIKit.h>
+
+//! Project version number for EGOGradientView.
+FOUNDATION_EXPORT double EGOGradientViewVersionNumber;
+
+//! Project version string for EGOGradientView.
+FOUNDATION_EXPORT const unsigned char EGOGradientViewVersionString[];
 
 /*
  * EGOGradientView works as a straight pass through to
