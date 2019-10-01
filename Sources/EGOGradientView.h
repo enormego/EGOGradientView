@@ -37,6 +37,8 @@ NS_SWIFT_NAME(GradientViewType)
 typedef NSString* EGOGradientViewType NS_EXTENSIBLE_STRING_ENUM;
 
 FOUNDATION_EXPORT _Nonnull EGOGradientViewType EGOGradientViewTypeAxial;
+FOUNDATION_EXPORT _Nonnull EGOGradientViewType EGOGradientViewTypeRadial;
+FOUNDATION_EXPORT _Nonnull EGOGradientViewType EGOGradientViewTypeConic API_AVAILABLE(macos(10.14), ios(12.0), watchos(5.0), tvos(12.0));
 
 /*
  * EGOGradientView works as a straight pass through to

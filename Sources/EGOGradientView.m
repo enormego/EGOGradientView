@@ -27,11 +27,20 @@
 #import "EGOGradientView.h"
 
 EGOGradientViewType EGOGradientViewTypeAxial = nil;
+EGOGradientViewType EGOGradientViewTypeRadial = nil;
+EGOGradientViewType EGOGradientViewTypeConic = nil;
 
 @implementation EGOGradientView
 
 + (void)initialize {
 	EGOGradientViewTypeAxial = kCAGradientLayerAxial;
+	EGOGradientViewTypeRadial = kCAGradientLayerRadial;
+
+	if(@available(tvOS 12.0, *)) {
+		EGOGradientViewTypeConic = kCAGradientLayerConic;
+	} else {
+		// Fallback on earlier versions
+	}
 }
 
 #pragma mark - Colors
