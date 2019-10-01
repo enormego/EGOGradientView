@@ -7,13 +7,13 @@ EGOGradientView is CAGradientLayer backed UIView that enables you to use gradien
 ### Carthage
 
 ```
-github "enormego/EGOGradientView" ~> 2.0.0
+github "enormego/EGOGradientView" ~> 2.0.1
 ```
 
 ### CocoaPods
 
 ```
-pod 'EGOGradientView', '~> 2.0.0'
+pod 'EGOGradientView', '~> 2.0.1'
 ```
 
 ### Without a dependency manager
@@ -22,7 +22,7 @@ Drag `EGOGradientView.h` and `EGOGradientView.m` into your project.
 
 ## License
 
-Copyright (c) 2009-2018 enormego
+Copyright (c) 2009-2019 enormego
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

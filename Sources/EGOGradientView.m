@@ -3,7 +3,7 @@
 //  EGOGradientView
 //
 //  Created by Shaun Harrison on 11/13/09.
-//  Copyright (c) 2009 enormego
+//  Copyright (c) 2009-2019 enormego
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
