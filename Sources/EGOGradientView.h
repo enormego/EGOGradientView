@@ -36,7 +36,7 @@ FOUNDATION_EXPORT const unsigned char EGOGradientViewVersionString[];
 NS_SWIFT_NAME(GradientViewType)
 typedef NSString* EGOGradientViewType NS_EXTENSIBLE_STRING_ENUM;
 
-FOUNDATION_EXPORT EGOGradientViewType EGOGradientViewTypeAxial;
+FOUNDATION_EXPORT _Nonnull EGOGradientViewType EGOGradientViewTypeAxial;
 
 /*
  * EGOGradientView works as a straight pass through to
@@ -48,7 +48,7 @@ FOUNDATION_EXPORT EGOGradientViewType EGOGradientViewTypeAxial;
 NS_SWIFT_NAME(GradientView)
 @interface EGOGradientView : UIView
 
-@property(nonatomic,strong,readonly) CAGradientLayer* layer;
+@property(nonatomic,strong,nonnull,readonly) CAGradientLayer* layer;
 
 /* The array of UIColor objects defining the color of each gradient
  * stop. Defaults to nil. Animatable. */
